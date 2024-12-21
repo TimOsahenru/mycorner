@@ -1,151 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>tim osahenru</title>
-  </head>
-  <body>
-    <header>
-      <a class="logo" href="index.html">Tim Osahenru.</a>
-      <span class="nav-toggler">&#9776;</span>
-      <!-- <nav>
-      <ul>
-        <li><a href="about.html">about</a></li>
-        <li><a href="notes.html">notes</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-    </nav> -->
-    </header>
-    <!-- introduction -->
-    <section class="container">
-      <h1>Hey 👋🏽, it's Tim!</h1>
-      <p>Thanks for taking a stop at my corner of the web!</p>
-      <p>
-        I'm a software engineer who enjoys building full-stack applications
-        using Python and Javascript!
-      </p>
-      <p>
-        In addition to documenting my side projects here, I enjoy penning down
-        my thoughts on software, organizational processes, music, or just random
-        topics. Feel free to check out my most recent projects.
-      </p>
-    </section>
+---
+layout: default
+lang: en
+---
 
-    <!-- blog section -->
-    <section class="blog-container">
-      <h2>recent projects 🛠️</h2>
-      <div class="grid-container">
-        <a
-          href="https://thinkchristmovement.com/"
-          class="grid-item"
-          target="_blank"
-        >
-          <h3>Think Christ movement</h3>
-          <p>
-            Think Christ Movement is an empowerment movement that's focused on
-            empowering people to achieve success through the principles of
-            Christ.
-          </p>
-          <span class="time-created">June 3, 2024, 3:45 PM</span>
-        </a>
+  <!-- introduction -->
+  <section class="container">
+    <h1>Hey 👋🏽, it's Tim!</h1>
+    <p>Thanks for taking a stop at my corner of the web!</p>
+    <p>
+      I'm a software engineer who enjoys building full-stack applications
+      using Python and Javascript!
+    </p>
+    <p>
+      In addition to documenting my side projects here, I enjoy penning down
+      my thoughts on software, organizational processes, music, or just random
+      topics. Feel free to check out my most recent notes.
+    </p>
+    
+  </section>
+   <!-- blog section -->
+   <section class="blog-container">
+    <h2>recent notes 📝</h2>
+  <div class="grid-container">
+    {% for post in site.posts %}
+    <a href="{{ post.url }}" class="grid-item">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.excerpt | truncatewords: 20 }}</p>
+    <span class="time-created">{{ post.date | date: "%Y-%m-%d" }}</span>
+  </a>
+  {% endfor %}
 
-        <a href="https://champchat.site/" class="grid-item" target="_blank">
-          <h3>ChampChat</h3>
-          <p>
-            Champchat is the messaging app that everyone loves! You can share
-            Everything.
-          </p>
-          <span class="time-created">June 3, 2024, 3:45 PM</span>
-        </a>
+  </div>
+</section>
 
-        <a href="https://paychamp.site/" class="grid-item" target="_blank">
-          <h3>PayChamp</h3>
-          <p>
-            An e-wallet a global financial tool with a new standard for money
-            transfers, created for local communities.
-          </p>
-          <span class="time-created">June 3, 2024, 3:45 PM</span>
-        </a>
-
-        <a
-          href="https://teamdecisionglobal.org/"
-          class="grid-item"
-          target="_blank"
-        >
-          <h3>Team Decision Global</h3>
-          <p>
-            A global community of humanitarians, partners, community members,
-            supporters, donors, and volunteers who share a common vision of a
-            world
-          </p>
-          <span class="time-created">June 3, 2024, 3:45 PM</span>
-        </a>
-
-        <a href="https://dwnetwork.org/" class="grid-item" target="_blank">
-          <h3>Decision Women Network</h3>
-          <p>
-            A prayer/playgroup for women created to connect like-minded women,
-            make new friends and enrich lives through the power of Prayer and
-            friendship!
-          </p>
-          <span class="time-created">June 3, 2024, 3:45 PM</span>
-        </a>
-
-        <!-- <a href="#" class="grid-item">
-        <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit 6</h3>
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur
-        </p>
-        <span class="time-created">June 3, 2024, 3:45 PM</span>
-      </a> -->
-
-        <!-- <a href="#" class="grid-item">
-        <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit 7</h3>
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur
-        </p>
-        <span class="time-created">June 3, 2024, 3:45 PM</span>
-      </a> -->
-
-        <!-- <a href="#" class="grid-item">
-        <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit 8</h3>
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur
-        </p>
-        <span class="time-created">June 3, 2024, 3:45 PM</span>
-      </a> -->
-
-        <!-- <a href="#" class="grid-item">
-        <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit 9</h3>
-        <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur
-        </p>
-     <span class="time-created">June 3, 2024, 3:45 PM</span>
-      </a> -->
-      </div>
-    </section>
-
-    <footer>
-      <!-- <p>
-        Tim Osahenru &copy; 2024 generated with ❤️ using chatGPT
-        <a href="">repo here</a>
-      </p> -->
-      <p>
-        Tim Osahenru &copy; 2024 generated with ❤️
-        <a href="">repo here</a>
-      </p>
-    </footer>
-    <script src="scripts.js"></script>
-  </body>
-</html>
+   
