@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+    <script src="{{ '/assets/js/scripts.js' | relative_url }}"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{{ page.title | default: site.title }}</title>
+
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="index.html">Tim Osahenru.</a>
+      <span class="nav-toggler">&#9776;</span>
+      <nav>
+      <ul>
+        <li><a href="about.html">about</a></li>
+        <li><a href="notes.html">notes</a></li>
+        <li><a href="contact.html">contact</a></li>
+      </ul>
+    </nav>
+    </header>
+    <main>
+        {{ content }}
+    </main>
+    <footer>
+        <p>
+            Tim Osahenru &copy; {{ site.time | date: "%Y" }} generated with ❤️
+            <a href="">source code here</a>
+          </p>
+    </footer>
+    <script src="scripts.js"></script>
+  </body>
+</html>
