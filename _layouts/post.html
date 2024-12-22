@@ -7,7 +7,7 @@ lang: en
     <section class="container">
       <p class="time-created" style="margin-bottom: -20px">
         <!-- January 1, 2024 . 30 mins read -->
-         {{ page.date }}
+        {{ page.date | date: "%B %-d, %Y" }}
       </p>
       <h2>{{ page.title }}</h2>
       <p>Thanks for taking a stop at my corner of the web!</p>

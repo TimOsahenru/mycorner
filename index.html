@@ -26,7 +26,8 @@ lang: en
     <a href="{{ post.url | relative_url }}" class="grid-item">
     <h3>{{ post.title }}</h3>
     <p>{{ post.excerpt | truncatewords: 20 }}</p>
-    <span class="time-created">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}
+    </span>
   </a>
   {% endfor %}
 
