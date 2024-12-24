@@ -14,26 +14,11 @@
 
   </head>
   <body>
-    <header>
-      <a class="logo" href="index.html">Tim Osahenru.</a>
-      <span class="nav-toggler">&#9776;</span>
-      <nav>
-      <ul>
-        <li><a href="about.html">about</a></li>
-        <li><a href="notes.html">notes</a></li>
-        <li><a href="contact.html">contact</a></li>
-      </ul>
-    </nav>
-    </header>
+    {%- include header.html -%}
     <main>
         {{ content }}
     </main>
-    <footer>
-        <p>
-            Tim Osahenru &copy; {{ site.time | date: "%Y" }} generated with ❤️
-            <a href="">source code here</a>
-          </p>
-    </footer>
+    {%- include footer.html -%}
     <script src="scripts.js"></script>
   </body>
 </html>
