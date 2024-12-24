@@ -3,35 +3,35 @@ layout: default
 lang: en
 ---
 
-  <!-- introduction -->
-  <section class="container">
-    <h1>Hey 👋🏽, it's Tim!</h1>
-    <p>Thanks for taking a stop at my corner of the web!</p>
-    <p>
-      I'm a software engineer who enjoys building full-stack applications
-      using Python and Javascript!
-    </p>
-    <p>
-      In addition to documenting my side projects here, I enjoy penning down
-      my thoughts on software, organizational processes, music, or just random
-      topics. Feel free to check out my most recent notes.
-    </p>
-    
-  </section>
-   <!-- blog section -->
-   <section class="blog-container">
-    <h2>recent notes 📝</h2>
-  <div class="grid-container">
-    {% for post in site.posts %}
-    <a href="{{ post.url | relative_url }}" class="grid-item">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.excerpt | truncatewords: 20 }}</p>
-    <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}
-    </span>
-  </a>
-  {% endfor %}
+<!-- introduction -->
+<section class="container">
+  <h1>Hey 👋🏽, it's Tim!</h1>
+  <p>Thanks for taking a stop at my corner of the web!</p>
+  <p>
+    I'm a software engineer who enjoys building full-stack applications
+    using Python and Javascript!
+  </p>
+  <p>
+    In addition to documenting my side projects here, I enjoy penning down
+    my thoughts on software, organizational processes, music, or just random
+    topics. Feel free to check out my most recent notes.
+  </p>
+  
+</section>
+  <!-- blog section -->
+  <section class="blog-container">
+  <h2>recent notes 📝</h2>
+<div class="grid-container">
+  {% for post in site.posts %}
+  <a href="{{ post.url | relative_url }}" class="grid-item">
+  <h3>{{ post.title }}</h3>
+  <p>{{ post.excerpt | truncatewords: 20 }}</p>
+  <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}
+  </span>
+</a>
+{% endfor %}
 
-  </div>
+</div>
 </section>
 
    

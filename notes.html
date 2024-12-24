@@ -1,0 +1,20 @@
+---
+layout: default
+lang: en
+---
+<!-- blog section -->
+<section class="blog-container">
+    <h2>all notes 📝</h2>
+    <div class="grid-container">
+        {% for post in site.posts %}
+    <a href="{{ post.url | relative_url }}" class="grid-item">
+        <h3>{{ post.title }}</h3>
+        <p>
+       {{ post.excerpt | truncatewords: 20 }}
+        </p>
+        <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}
+        </span>
+    </a>
+    {% endfor %}
+    </div>
+</section>
