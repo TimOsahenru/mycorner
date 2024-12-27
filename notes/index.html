@@ -1,0 +1,39 @@
+---
+layout: default
+lang: en
+---
+<!-- note section -->
+<section class="blog-container">
+<h2>all notes 📝</h2>
+<div class="grid-container">
+    {% for post in paginator.posts %}
+    <a href="{{ post.url | relative_url }}" class="grid-item">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt | truncatewords: 20 }}</p>
+        <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">&larr; prev</a>
+    {% else %}
+    <span class="prev disabled">&larr; prev</span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+        <span class="current">{{ page }}</span>
+    {% else %}
+        <a href="{{ paginator.paginate_path | replace: ':num', page }}" class="page">{{ page }}</a>
+    {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}" class="next">next &rarr;</a>
+    {% else %}
+    <span class="next disabled">next &rarr;</span>
+    {% endif %}
+</div>
+</section>
