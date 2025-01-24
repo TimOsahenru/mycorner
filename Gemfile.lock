@@ -107,6 +107,7 @@ DEPENDENCIES
   logger
   minima (~> 2.0)
   ostruct
+  rouge
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.0)
