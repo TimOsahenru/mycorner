@@ -18,5 +18,5 @@ plugins:
 
 # permalink: "/:path/"
 
-paginate: 1
+paginate: 6
 paginate_path: "/notes/page:num/"
