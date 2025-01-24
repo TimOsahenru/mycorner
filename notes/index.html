@@ -15,6 +15,7 @@ lang: en
     {% endfor %}
 </div>
 
+{% if paginator.total_pages > %}
 <div class="pagination">
     {% if paginator.previous_page %}
     <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">&larr; prev</a>
@@ -36,4 +37,5 @@ lang: en
     <span class="next disabled">next &rarr;</span>
     {% endif %}
 </div>
+{% endif %}
 </section>
