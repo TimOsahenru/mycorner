@@ -44,4 +44,4 @@ gem "logger"
 gem "ostruct"
 gem "base64"
 gem "bigdecimal"
-
+gem 'rouge'
