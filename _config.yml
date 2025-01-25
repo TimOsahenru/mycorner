@@ -20,7 +20,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
 
-# permalink: "/:path/"
+permalink: "/:path/"
 
 paginate: 6
 paginate_path: "/notes/page:num/"
