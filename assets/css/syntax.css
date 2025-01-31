@@ -56,3 +56,103 @@ code.language-plaintext {
 .highlight .nt { color: #f92672 } /* Name.Tag */
 .highlight .nv { color: #f8f8f2 } /* Name.Variable */
 .highlight .w { color: #f8f8f2 } /* Text.Whitespace */
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .highlight {
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 3px;
+    }
+
+    pre.highlight {
+        padding: 8px;
+    }
+
+    code {
+        font-size: 14px; /* Adjust font size for better readability on small screens */
+    }
+
+    code.language-plaintext {
+        font-size: 14px; /* Adjust font size for better readability on small screens */
+    }
+
+    /* Adjust syntax highlighting colors if needed */
+    .highlight .c,
+    .highlight .cm,
+    .highlight .cp,
+    .highlight .c1,
+    .highlight .cs {
+        color: #75715e; /* Ensure comments remain readable */
+    }
+
+    .highlight .err {
+        color: #880049;
+        background-color: #1e0010;
+    }
+
+    .highlight .k { color: #66d9ef; }
+    .highlight .l { color: #ae81ff; }
+    .highlight .n { color: #f8f8f2; }
+    .highlight .o { color: #f92672; }
+    .highlight .p { color: #f8f8f2; }
+    .highlight .s { color: #a6e22e; }
+    .highlight .na { color: #a6e22e; }
+    .highlight .nb { color: #f8f8f2; }
+    .highlight .nc { color: #a6e22e; }
+    .highlight .no { color: #66d9ef; }
+    .highlight .nd { color: #a6e22e; }
+    .highlight .ni { color: #f8f8f2; }
+    .highlight .ne { color: #a6e22e; }
+    .highlight .nf { color: #a6e22e; }
+    .highlight .nl { color: #f8f8f2; }
+    .highlight .nn { color: #f8f8f2; }
+    .highlight .py { color: #f8f8f2; }
+    .highlight .nt { color: #f92672; }
+    .highlight .nv { color: #f8f8f2; }
+    .highlight .w { color: #f8f8f2; }
+}
+/* Responsive Styles for Smaller Screens */
+@media (max-width: 768px) {
+    .highlight {
+        font-size: 14px; /* Reduce font size */
+        padding: 8px; /* Reduce padding */
+        border-radius: 3px;
+        max-width: 100%; /* Ensure it stays inside the container */
+        overflow-x: auto;
+    }
+
+    pre.highlight {
+        padding: 8px;
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    code {
+        font-size: 13px; /* Adjust font size */
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlight {
+        font-size: 12px; /* Further reduce font size */
+        padding: 6px;
+        border-radius: 2px;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    pre.highlight {
+        padding: 6px;
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    code {
+        font-size: 12px; /* Reduce font size */
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
