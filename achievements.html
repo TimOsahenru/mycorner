@@ -1,0 +1,298 @@
+---
+layout: default
+lang: en
+---
+<style>
+    .achievements {
+  margin: 2rem 0;
+}
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.achievement-item {
+  text-align: center;
+}
+.achievement-item img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.achievement-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.achievement-item p {
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  margin: auto;
+  display: block;
+  border-radius: 8px;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+.modal img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-caption {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: #ccc;
+}
+
+/* Navigation arrows */
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-nav:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+  left: -60px;
+}
+
+.next {
+  right: -60px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .modal-nav {
+    font-size: 24px;
+    padding: 8px 12px;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  .close {
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+  }
+  
+  .modal-caption {
+    position: static;
+    margin-top: 10px;
+  }
+}
+</style>
+
+<!-- introduction -->
+<section class="container">
+  <h1>Hey 👋🏽, it's Tim!</h1>
+  <p>Thanks for taking a stop at my corner of the web!</p>
+  <p>
+    I'm a software engineer who enjoys building full-stack applications
+    using Python and Javascript!
+  </p>
+  <p>
+    In addition to documenting my side projects here, I enjoy penning down
+    my thoughts on software, organizational processes, music, or just random
+    topics. Feel free to check out my most recent notes.
+  </p>
+</section>
+
+<!-- achievements section -->
+<section class="container achievements">
+  <h2>My Achievements</h2>
+  <div class="achievement-grid">
+    <!-- Achievement 1 -->
+    <div class="achievement-item">
+      <img src="/assets/images/python_knust_mentorship.png" 
+           alt="Achievement 1 description" 
+           onclick="openModal(0)"
+           data-caption="Invitation email as a mentor for KNUST">
+      <p>Invitation email as a mentor for KNUST</p>
+    </div>
+    
+    <!-- Achievement 2 -->
+    <div class="achievement-item">
+      <img src="/assets/images/certificate_of_participation.jpeg" 
+           alt="Achievement 2 description" 
+           onclick="openModal(1)"
+           data-caption="Certificate of speaking at PyConGh2022">
+      <p>Certificate of speaking at PyConGh2022</p>
+    </div>
+    
+    <!-- Achievement 3 -->
+    <div class="achievement-item">
+      <img src="/assets/images/codegrades.png" 
+           alt="Achievement 3 description" 
+           onclick="openModal(2)"
+           data-caption="Open Source Contributor">
+      <p>Building devlocate on codegrades <a href="https://www.codegrades.com/user/tim/python2023/grade5/" style="color: bisque;">read my journey</a></p>
+    </div>
+    
+    <!-- Add more achievements as needed -->
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="modal-nav prev" onclick="changeImage(-1)">&#10094;</span>
+    <img id="modalImg" src="" alt="">
+    <span class="modal-nav next" onclick="changeImage(1)">&#10095;</span>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
+<!-- blog section -->
+
+<script>
+let currentImageIndex = 0;
+const images = document.querySelectorAll('.achievement-item img');
+
+function openModal(index) {
+  currentImageIndex = index;
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  
+  const clickedImg = images[index];
+  
+  modal.style.display = 'flex';
+  // Force reflow before adding show class for animation
+  modal.offsetHeight;
+  modal.classList.add('show');
+  
+  modalImg.src = clickedImg.src;
+  modalImg.alt = clickedImg.alt;
+  modalCaption.textContent = clickedImg.dataset.caption || clickedImg.alt;
+  
+  // Prevent body scrolling when modal is open
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.classList.remove('show');
+  
+  setTimeout(() => {
+    modal.style.display = 'none';
+    // Restore body scrolling
+    document.body.style.overflow = 'auto';
+  }, 300);
+}
+
+function changeImage(direction) {
+  currentImageIndex += direction;
+  
+  if (currentImageIndex >= images.length) {
+    currentImageIndex = 0;
+  } else if (currentImageIndex < 0) {
+    currentImageIndex = images.length - 1;
+  }
+  
+  const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  const newImg = images[currentImageIndex];
+  
+  modalImg.src = newImg.src;
+  modalImg.alt = newImg.alt;
+  modalCaption.textContent = newImg.dataset.caption || newImg.alt;
+}
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  } else if (event.key === 'ArrowLeft') {
+    changeImage(-1);
+  } else if (event.key === 'ArrowRight') {
+    changeImage(1);
+  }
+});
+
+// Prevent modal from closing when clicking on the image
+document.getElementById('modalImg').addEventListener('click', function(event) {
+  event.stopPropagation();
+});
+</script>

@@ -2,7 +2,7 @@
 layout: post
 title: "Routers in django and when to use them"
 date: 2025-01-23
-categories: django
+categories: [django, python]
 ---
 
 First of all what are routers, but before we go into that, there are two ways to register a ViewSet method
