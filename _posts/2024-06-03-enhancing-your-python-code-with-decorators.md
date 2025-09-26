@@ -5,7 +5,6 @@ date: 2024-06-03
 categories: python backend webdev learning
 ---
 
-## Introduction
 In this article, you'll learn about decorators in Python: how they work, why they are useful, and when to use them. We'll also explore some common decorators and their use cases.
 
 While I aim to explain concepts from a beginner's perspective, this article is not tailored for absolute beginners. A fundamental understanding of OOP in Python is required to fully benefit from this article. With that in mind, let's dive in.
