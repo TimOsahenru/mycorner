@@ -1,5 +1,47 @@
 <footer>
-    <p>
-        &copy; {{ site.time | date: "%Y" }} with ❤️ timosahenru
-      </p>
+    <div class="footer-simple">
+        <p class="copyright">
+            &copy; {{ site.time | date: "%Y" }} made with ❤️ by timosahenru
+        </p>
+        <div class="footer-links">
+            <a href="{{ '/notes/' | relative_url }}">notes</a> • 
+            <a href="{{ '/foodie/' | relative_url }}">foodie</a> • 
+             <a href="{{ '/foodie/' | relative_url }}">金言</a> • 
+            <a href="{{ '/disc-jockey/ | relative_url'}}">disc jockey</a> • 
+              <a href="/foodie">cv</a> • 
+            <a href="https://x.com/_osahenru">say hi</a>
+        </div>
+    </div>
 </footer>
+
+<style>
+    footer {
+        background-color: #0D0E0E;
+        color: #fff;
+        border-top: 1px solid #1A1B1B;
+        text-align: center;
+    }
+    
+    .footer-simple {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .copyright {
+        color: #CCCCCC;
+        margin: 0 0 10px 0;
+        font-size: 14px;
+    }
+    
+    .footer-links a {
+        color: #CCCCCC;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        color: #FF6B35;
+    }
+</style>

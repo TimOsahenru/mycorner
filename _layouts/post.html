@@ -3,58 +3,642 @@ layout: default
 lang: en
 ---
 
-<section class="container">
-  <p class="time-created" style="margin-bottom: -20px">
-    {{ page.date | date: "%B %-d, %Y" }}
-  </p>
-  <h2>{{ page.title }}</h2>
-  <!-- <p>Thanks for taking a stop at my corner of the web!</p> -->
+<style>
+    /* Post container */
+    .post-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    /* Post header */
+    .post-header {
+        margin-bottom: 40px;
+        border-bottom: 2px solid #1A1B1B;
+        padding-bottom: 30px;
+    }
+    
+    .post-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .time-created {
+        color: #FF6B35;
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+    
+    .time-created:before {
+        content: "📅";
+        margin-right: 8px;
+    }
+    
+    .reading-time {
+        color: #888;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .reading-time:before {
+        content: "⏱️";
+        margin-right: 5px;
+    }
+    
+    .post-title {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 10px 0 20px 0;
+        background: linear-gradient(to right, #FF6B35, #FF8E53);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Tags styling */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .tag-button {
+        background: linear-gradient(to right, #FF6B35, #FF8E53);
+        color: white;
+        border: none;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .tag-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+    }
+    
+    /* Post content styling */
+    .post-content {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #CCCCCC;
+        margin-bottom: 50px;
+    }
+    
+    .post-content h1, 
+    .post-content h2, 
+    .post-content h3, 
+    .post-content h4 {
+        color: #fff;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    
+    .post-content h2 {
+        font-size: 32px;
+        border-bottom: 2px solid #FF6B35;
+        padding-bottom: 10px;
+    }
+    
+    .post-content h3 {
+        font-size: 26px;
+    }
+    
+    .post-content p {
+        margin-bottom: 25px;
+    }
+    
+    .post-content a {
+        color: #FF8E53;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.3s ease;
+    }
+    
+    .post-content a:hover {
+        border-bottom: 1px solid #FF8E53;
+    }
+    
+    .post-content blockquote {
+        border-left: 4px solid #FF6B35;
+        padding-left: 20px;
+        margin: 30px 0;
+        font-style: italic;
+        color: #aaa;
+        background: rgba(255, 107, 53, 0.05);
+        padding: 20px;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .post-content ul, 
+    .post-content ol {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    
+    .post-content li {
+        margin-bottom: 10px;
+    }
+    
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 30px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Code block enhancements */
+    .post-content .highlight {
+        margin: 30px 0;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+    
+    .post-content .highlight:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .post-content pre {
+        padding: 20px;
+        overflow-x: auto;
+        margin: 0;
+    }
+    
+    /* Table styling */
+    .post-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        background: #0D0E0E;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .post-content th, 
+    .post-content td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #1A1B1B;
+    }
+    
+    .post-content th {
+        background: rgba(255, 107, 53, 0.1);
+        color: #FF6B35;
+        font-weight: 600;
+    }
+    
+    /* Post navigation */
+    .post-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0;
+        padding: 20px 0;
+        border-top: 1px solid #1A1B1B;
+        border-bottom: 1px solid #1A1B1B;
+    }
+    
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 20px;
+        background: #0D0E0E;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #fff;
+        transition: all 0.3s ease;
+        max-width: 45%;
+    }
+    
+    .nav-link:hover {
+        background: #1A1B1B;
+        transform: translateX(-5px);
+    }
+    
+    .nav-link.next:hover {
+        transform: translateX(5px);
+    }
+    
+    .nav-link .arrow {
+        font-size: 20px;
+        color: #FF6B35;
+    }
+    
+    .nav-text {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .nav-direction {
+        font-size: 12px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .nav-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+    
+    /* Similar Posts Section */
+    .similar-posts {
+        margin: 60px 0 30px 0;
+    }
+    
+    .similar-posts h3 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        color: #fff;
+        text-align: center;
+        position: relative;
+    }
+    
+    .similar-posts h3:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(to right, #FF6B35, #FF8E53);
+    }
+    
+    .similar-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+    
+    .similar-post {
+        background: #0D0E0E;
+        padding: 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        border: 1px solid #1A1B1B;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .similar-post:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: #FF6B35;
+        background: #1A1B1B;
+    }
+    
+    .similar-post h4 {
+        font-size: 18px;
+        margin: 0 0 10px 0;
+        color: #fff;
+        line-height: 1.4;
+    }
+    
+    .similar-date {
+        color: #FF6B35;
+        font-size: 14px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+    
+    .similar-post p {
+        font-size: 15px;
+        color: #CCCCCC;
+        line-height: 1.5;
+        margin: 0;
+        flex-grow: 1;
+    }
+    
+    .no-posts {
+        text-align: center;
+        color: #888;
+        font-style: italic;
+        padding: 40px 0;
+        grid-column: 1 / -1;
+    }
+    
+    /* Share buttons */
+    .share-section {
+        text-align: center;
+        margin: 40px 0;
+        padding: 20px;
+        background: #0D0E0E;
+        border-radius: 8px;
+    }
+    
+    .share-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+    
+    .share-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .share-btn {
+        padding: 8px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .share-twitter { background: #1DA1F2; }
+    .share-linkedin { background: #0077B5; }
+    .share-facebook { background: #4267B2; }
+    .share-copy { background: #FF6B35; }
+    
+    .share-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .post-title {
+            font-size: 32px;
+        }
+        
+        .post-content {
+            font-size: 16px;
+        }
+        
+        .post-content h2 {
+            font-size: 26px;
+        }
+        
+        .post-content h3 {
+            font-size: 22px;
+        }
+        
+        .post-navigation {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            max-width: 100%;
+        }
+        
+        .similar-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .share-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .share-btn {
+            width: 200px;
+            justify-content: center;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .post-title {
+            font-size: 28px;
+        }
+        
+        .post-meta {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .tags {
+            justify-content: flex-start;
+        }
+    }
+</style>
 
-  <!-- Dynamic Categories -->
-  <div class="tags">
-    {% for category in page.categories %}
-      <button class="tag-button">{{ category }}</button>
-    {% endfor %}
-  </div>
-
-  <p>{{ content }}</p>
-
-  <!-- Similar Posts Section -->
-  <div class="similar-posts">
-    <h3>Similar Posts</h3>
-    <div class="grid">
-      {% assign maxRelated = 3 %}
-      {% assign relatedCount = 0 %}
-
-      {% for post in site.posts %}
-        {% if post.url != page.url %} <!-- Exclude current post -->
-          <!-- Check shared categories -->
-          {% for category in post.categories %}
-            {% if page.categories contains category %}
-              <a class="post" href="{{ post.url }}">
-                <h4>{{ post.title }}</h4>
-                <span class="similar-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-                <p>
-                  {% if post.excerpt %}
-                    {{ post.excerpt | strip_html | truncate: 120 }}
-                  {% else %}
-                    {{ post.content | strip_html | truncate: 120 }}
-                  {% endif %}
-                </p>
-              </a>
-              {% assign relatedCount = relatedCount | plus: 1 %}
-              {% if relatedCount >= maxRelated %}
-                {% break %}
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
-
-      <!-- Fallback if no related posts -->
-      {% if relatedCount == 0 %}
-        <p>No similar posts found.</p>
-      {% endif %}
+<section class="post-container">
+    <!-- Post Header -->
+    <div class="post-header">
+        <div class="post-meta">
+            <span class="time-created">{{ page.date | date: "%B %-d, %Y" }}</span>
+            <span class="reading-time" id="readingTime"></span>
+        </div>
+        
+        <h1 class="post-title">{{ page.title }}</h1>
+        
+        <!-- Dynamic Categories -->
+        <div class="tags">
+            {% for category in page.categories %}
+                <button class="tag-button">{{ category }}</button>
+            {% endfor %}
+        </div>
     </div>
-  </div>
+
+    <!-- Post Content -->
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <!-- Share Section -->
+    <div class="share-section">
+        <div class="share-title">Enjoyed this post? Share it!</div>
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="#" class="share-btn share-linkedin" onclick="shareOnLinkedIn()">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="#" class="share-btn share-facebook" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-copy" onclick="copyLink()">
+                <i class="fas fa-link"></i> Copy Link
+            </a>
+        </div>
+    </div>
+
+    <!-- Post Navigation -->
+    <div class="post-navigation">
+        {% if page.previous %}
+            <a href="{{ page.previous.url }}" class="nav-link">
+                <span class="arrow">←</span>
+                <div class="nav-text">
+                    <span class="nav-direction">Previous</span>
+                    <span class="nav-title">{{ page.previous.title | truncate: 50 }}</span>
+                </div>
+            </a>
+        {% endif %}
+        
+        {% if page.next %}
+            <a href="{{ page.next.url }}" class="nav-link next">
+                <div class="nav-text">
+                    <span class="nav-direction">Next</span>
+                    <span class="nav-title">{{ page.next.title | truncate: 50 }}</span>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Similar Posts Section -->
+    <div class="similar-posts">
+        <h3>You Might Also Like</h3>
+        <div class="similar-grid">
+            {% assign maxRelated = 3 %}
+            {% assign relatedCount = 0 %}
+            {% assign minCommonTags = 1 %}
+
+            {% for post in site.posts %}
+                {% if post.url != page.url %}
+                    {% assign sameTagCount = 0 %}
+                    
+                    {% for category in post.categories %}
+                        {% if page.categories contains category %}
+                            {% assign sameTagCount = sameTagCount | plus: 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if sameTagCount >= minCommonTags %}
+                        <a class="similar-post" href="{{ post.url }}">
+                            <h4>{{ post.title }}</h4>
+                            <span class="similar-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+                            <p>
+                                {% if post.excerpt %}
+                                    {{ post.excerpt | strip_html | truncate: 120 }}
+                                {% else %}
+                                    {{ post.content | strip_html | truncate: 120 }}
+                                {% endif %}
+                            </p>
+                        </a>
+                        {% assign relatedCount = relatedCount | plus: 1 %}
+                        {% if relatedCount >= maxRelated %}
+                            {% break %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            <!-- Fallback if no related posts -->
+            {% if relatedCount == 0 %}
+                <div class="no-posts">
+                    <p>No similar posts found. Check out the <a href="/blog">blog archive</a> for more content.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </section>
+
+<script>
+    // Calculate reading time
+    function calculateReadingTime() {
+        const content = document.querySelector('.post-content');
+        const text = content.textContent;
+        const wordCount = text.split(/\s+/).length;
+        const readingTime = Math.ceil(wordCount / 200); // 200 words per minute
+        
+        const readingTimeElement = document.getElementById('readingTime');
+        readingTimeElement.textContent = `${readingTime} min read`;
+    }
+    
+    // Share functions
+    function shareOnTwitter() {
+        const url = encodeURIComponent(window.location.href);
+        const text = encodeURIComponent("Check out this post: " + document.title);
+        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+    }
+    
+    function shareOnLinkedIn() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    }
+    
+    function shareOnFacebook() {
+        const url = encodeURIComponent(window.location.href);
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    }
+    
+    function copyLink() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            const copyBtn = document.querySelector('.share-copy');
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+            }, 2000);
+        });
+    }
+    
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        calculateReadingTime();
+        
+        // Add fade-in animation to similar posts
+        const similarPosts = document.querySelectorAll('.similar-post');
+        similarPosts.forEach((post, index) => {
+            post.style.animationDelay = `${index * 0.1}s`;
+            post.classList.add('fade-in');
+        });
+    });
+    
+    // Add fade-in animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>

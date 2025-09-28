@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Section - Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #040200;
+            color: #fff;
+            padding-bottom: 100px;
+        }
+        
+        header {
+            background-color: #0D0E0E;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        nav {
+            margin-left: auto;
+            margin-right: 250px;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-toggler {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+        
+        h2 {
+            font-size: 35px;
+            font-weight: bold;
+        }
+        
+        p {
+            font-size: 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: auto;
+            margin-left: 250px;
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .coming-soon-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .dj-icon {
+            font-size: 100px;
+            color: #FF5722;
+            margin: 30px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .coming-soon-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #FF5722, #FF9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            color: #CCCCCC;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .countdown-item {
+            background-color: #0D0E0E;
+            padding: 20px;
+            border-radius: 8px;
+            min-width: 100px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .countdown-number {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            color: #FF5722;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+        
+        .soundcloud-section {
+            background-color: #0D0E0E;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #FF5722;
+        }
+        
+        .soundcloud-placeholder {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #1A1B1B;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .soundcloud-icon {
+            font-size: 40px;
+            color: #FF5722;
+            margin-right: 20px;
+        }
+        
+        .soundcloud-text {
+            flex: 1;
+        }
+        
+        .soundcloud-link {
+            display: inline-block;
+            background-color: #FF5722;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .soundcloud-link:hover {
+            background-color: #FF9800;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #0D0E0E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: #FF5722;
+            transform: translateY(-5px);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature-item {
+            background-color: #0D0E0E;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: #0D0E0E;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        footer p a {
+            color:#CCCCCC;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Mobile view adjustments */
+        @media (max-width: 768px) {
+            .logo {
+                margin-left: auto;
+                text-align: center;
+            }
+            
+            .nav-toggler {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-right: 0;
+                text-align: center;
+            }
+            
+            nav.active {
+                display: block;
+                background-color: #0D0E0E;
+                z-index: 1;
+            }
+            
+            nav ul {
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+            
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .nav-toggler {
+                display: block;
+                margin-left: auto;
+                color: white;
+            }
+            
+            .coming-soon-title {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+            
+            .countdown-number {
+                font-size: 28px;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .soundcloud-placeholder {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .soundcloud-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">Your Blog</a>
+        <div class="nav-toggler">☰</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/foodie">Foodie</a></li>
+                <li><a href="/djing" style="color: #FF5722;">DJing</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="coming-soon-container">
+        <div class="dj-icon fade-in">
+            <i class="fas fa-compact-disc"></i>
+        </div>
+        
+        <h1 class="coming-soon-title fade-in delay-1">DJ Section - Coming Soon</h1>
+        <p class="subtitle fade-in delay-1">I'm working on something special for my DJ section. While you wait, check out my mixes and stay tuned for updates!</p>
+        
+        <div class="countdown fade-in delay-2">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        
+        <div class="soundcloud-section fade-in delay-2">
+            <h2 class="section-title">My Latest Mixes</h2>
+            
+            <div class="soundcloud-placeholder">
+                <i class="fab fa-soundcloud soundcloud-icon"></i>
+                <div class="soundcloud-text">
+                    <h3>Weekend Vibes Mix</h3>
+                    <p>A selection of deep house and techno tracks perfect for your weekend.</p>
+                    <a href="https://soundcloud.com/your-profile" target="_blank" class="soundcloud-link">
+                        Listen on SoundCloud
+                    </a>
+                </div>
+            </div>
+            
+            <div class="soundcloud-placeholder">
+                <i class="fab fa-soundcloud soundcloud-icon"></i>
+                <div class="soundcloud-text">
+                    <h3>Late Night Sessions</h3>
+                    <p>Ambient and downtempo mixes for those late-night coding sessions.</p>
+                    <a href="https://soundcloud.com/your-profile" target="_blank" class="soundcloud-link">
+                        Listen on SoundCloud
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-list fade-in delay-3">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Mixes & Sets</h3>
+                <p>Curated playlists and live DJ sets spanning various genres.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Event Schedule</h3>
+                <p>Find out where I'll be playing next - both virtual and live events.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3>Equipment & Setup</h3>
+                <p>Details about my DJ gear and software setup for fellow enthusiasts.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>DJing Blog</h3>
+                <p>Thoughts on music production, mixing techniques, and the DJ lifestyle.</p>
+            </div>
+        </div>
+        
+        <div class="social-links fade-in delay-3">
+            <a href="#" class="social-link"><i class="fab fa-soundcloud"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-spotify"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-mixcloud"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Your Blog. All Rights Reserved. | <a href="/contact">Contact</a></p>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('December 31, 2023 23:59:59').getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.countdown').innerHTML = "<h2>DJ Section is Live!</h2>";
+            }
+        }
+        
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Mobile navigation toggle
+        document.querySelector('.nav-toggler').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Fade in elements on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        fadeInOnScroll(); // Check on initial load
+    </script>
+</body>
+</html>

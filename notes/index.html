@@ -2,40 +2,414 @@
 layout: default
 lang: en
 ---
-<!-- note section -->
-<section class="blog-container">
-<h2>all notes 📝</h2>
-<div class="grid-container">
-    {% for post in paginator.posts %}
-    <a href="{{ post.url | relative_url }}" class="grid-item">
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.excerpt | truncatewords: 20 }}</p>
-        <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}</span>
-    </a>
-    {% endfor %}
-</div>
 
-{% if paginator.total_pages > 1 %}
-<div class="pagination">
-    {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">&larr; prev</a>
-    {% else %}
-    <span class="prev disabled">&larr; prev</span>
-    {% endif %}
+<style>
+    /* Introduction section */
+    .intro-section {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    .intro-section h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, #FF6B35, #FF8E53, #6C63FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInUp 0.8s ease;
+    }
+    
+    .intro-text {
+        font-size: 20px;
+        line-height: 1.7;
+        color: #CCCCCC;
+        margin-bottom: 30px;
+        animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    .intro-text a {
+        color: #FF8E53;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .intro-text a:hover {
+        text-decoration: underline;
+        color: #FF6B35;
+    }
+    
+    .highlight {
+        background: linear-gradient(120deg, #FF6B35 0%, #FF8E53 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 40px;
+        animation: fadeInUp 0.8s ease 0.4s both;
+    }
+    
+    .cta-btn {
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .cta-primary {
+        background: linear-gradient(to right, #FF6B35, #FF8E53);
+        color: white;
+    }
+    
+    .cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+    }
+    
+    .cta-secondary {
+        background-color: #0D0E0E;
+        color: white;
+        border: 2px solid #FF6B35;
+    }
+    
+    .cta-secondary:hover {
+        background-color: #FF6B35;
+        transform: translateY(-3px);
+    }
+    
+    /* Skills section */
+    .skills-section {
+        max-width: 900px;
+        margin: 80px auto 60px;
+        padding: 0 20px;
+    }
+    
+    .skills-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 40px;
+        color: #fff;
+        position: relative;
+    }
+    
+    .skills-title:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(to right, #FF6B35, #FF8E53);
+    }
+    
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+    
+    .skill-card {
+        background-color: #0D0E0E;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #1A1B1B;
+    }
+    
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: #FF6B35;
+    }
+    
+    .skill-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+        color: #FF6B35;
+    }
+    
+    .skill-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    
+    .skill-card p {
+        font-size: 15px;
+        color: #CCCCCC;
+        line-height: 1.5;
+    }
+    
+    /* Blog section */
+    .blog-section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+    
+    .blog-section h2 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 40px;
+        color: #fff;
+        position: relative;
+    }
+    
+    .blog-section h2:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(to right, #FF6B35, #FF8E53);
+    }
+    
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .grid-item {
+        background-color: #0D0E0E;
+        padding: 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        border: 1px solid #1A1B1B;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        animation: fadeInUp 0.6s ease;
+    }
+    
+    .grid-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.1);
+        border-color: #FF6B35;
+        background-color: #1A1B1B;
+    }
+    
+    .grid-item h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: #fff;
+        line-height: 1.4;
+    }
+    
+    .grid-item p {
+        font-size: 14px;
+        color: #CCCCCC;
+        line-height: 1.5;
+        flex-grow: 1;
+        margin-bottom: 12px;
+    }
+    
+    .time-created {
+        font-style: italic;
+        color: #888;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+    }
+    
+    .time-created:before {
+        content: "📅";
+        margin-right: 5px;
+    }
+    
+    .view-all {
+        text-align: center;
+        margin-top: 40px;
+    }
+    
+    .view-all-btn {
+        display: inline-block;
+        padding: 10px 25px;
+        background-color: #0D0E0E;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        border: 2px solid #FF6B35;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+    
+    .view-all-btn:hover {
+        background-color: #FF6B35;
+        transform: translateY(-2px);
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .grid-item:nth-child(1) { animation-delay: 0.1s; }
+    .grid-item:nth-child(2) { animation-delay: 0.2s; }
+    .grid-item:nth-child(3) { animation-delay: 0.3s; }
+    .grid-item:nth-child(4) { animation-delay: 0.4s; }
+    .grid-item:nth-child(5) { animation-delay: 0.5s; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .intro-section h1 {
+            font-size: 36px;
+        }
+        
+        .intro-text {
+            font-size: 18px;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .cta-btn {
+            width: 200px;
+            justify-content: center;
+        }
+        
+        .grid-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .intro-section h1 {
+            font-size: 32px;
+        }
+        
+        .blog-section h2 {
+            font-size: 28px;
+        }
+        
+        .grid-item {
+            padding: 18px;
+        }
+        
+        .grid-item h3 {
+            font-size: 17px;
+        }
+        
+        .grid-item p {
+            font-size: 13px;
+        }
+    }
+</style>
 
-    {% for page in (1..paginator.total_pages) %}
-    {% if page == paginator.page %}
-        <span class="current">{{ page }}</span>
-    {% else %}
-        <a href="{{ paginator.paginate_path | replace: ':num', page }}" class="page">{{ page }}</a>
-    {% endif %}
-    {% endfor %}
-
-    {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | relative_url }}" class="next">next &rarr;</a>
-    {% else %}
-    <span class="next disabled">next &rarr;</span>
-    {% endif %}
-</div>
-{% endif %}
+<!-- Introduction section -->
+<section class="intro-section">
+    <h1>Hey 👋🏽, it's Tim!</h1>
+    
+    <div class="intro-text">
+        <p>Thanks for taking a stop at my corner of the web!</p>
+        <p>
+            I'm a software engineer who enjoys building full-stack applications
+            using <span class="highlight">Python</span>. I'm currently building 
+            <a href="" class="highlight">Africa's e-ticket platform</a> 🚀 amongst a few of my portfolio projects.
+        </p>
+        <p>
+            In addition to documenting my side projects here, I enjoy penning down
+            my thoughts on software, organizational processes, music, or just random
+            yap. Feel free to check out my most recent yapping.
+        </p>
+    </div>
+    
+    <div class="cta-buttons">
+        <a href="/about" class="cta-btn cta-primary">Learn More About Me</a>
+        <a href="/projects" class="cta-btn cta-secondary">View My Projects</a>
+    </div>
 </section>
+
+<!-- Blog section -->
+<section class="blog-section">
+    <h2>Recent Notes 📝</h2>
+    
+    <div class="grid-container">
+        {% for post in site.posts limit:6 %}
+        <a href="{{ post.url | relative_url }}" class="grid-item">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <span class="time-created">{{ post.date | date: "%B %-d, %Y" }}</span>
+        </a>
+        {% endfor %}
+    </div>
+    
+    {% if site.posts.size > 6 %}
+    <div class="view-all">
+        <a href="/blog" class="view-all-btn">View All Posts</a>
+    </div>
+    {% endif %}
+</section>
+
+<script>
+    // Add fade-in animation to elements as they come into view
+    document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe skill cards and blog posts
+        document.querySelectorAll('.skill-card, .grid-item').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    });
+    
+    // Add hover effect to grid items
+    document.querySelectorAll('.grid-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+</script>
