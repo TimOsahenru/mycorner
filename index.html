@@ -142,11 +142,11 @@ lang: en
         line-height: 1.5;
     }
     
-    /* Blog section */
+    /* Blog section - Fixed spacing */
     .blog-section {
         max-width: 1200px;
-        margin: 60px auto;
-        padding: 0 20px;
+        margin: 60px auto 100px; /* Increased bottom margin */
+        padding: 0 20px 40px; /* Added bottom padding */
     }
     
     .blog-section h2 {
@@ -172,6 +172,7 @@ lang: en
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         gap: 30px;
+        margin-bottom: 30px; /* Added margin at bottom */
     }
     
     .grid-item {
@@ -291,6 +292,10 @@ lang: en
         .skills-grid {
             grid-template-columns: 1fr;
         }
+        
+        .blog-section {
+            margin-bottom: 80px; /* Adjusted for mobile */
+        }
     }
     
     @media (max-width: 480px) {
@@ -304,6 +309,10 @@ lang: en
         
         .grid-item {
             padding: 20px;
+        }
+        
+        .blog-section {
+            margin-bottom: 60px; /* Further adjustment for small screens */
         }
     }
 </style>

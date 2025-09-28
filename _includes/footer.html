@@ -1,25 +1,10 @@
-<footer>
-    <div class="footer-simple">
-        <p class="copyright">
-            &copy; {{ site.time | date: "%Y" }} made with ❤️ by timosahenru
-        </p>
-        <div class="footer-links">
-            <a href="{{ '/notes/' | relative_url }}">notes</a> • 
-            <a href="{{ '/foodie/' | relative_url }}">foodie</a> • 
-             <a href="{{ '/foodie/' | relative_url }}">金言</a> • 
-            <a href="{{ '/disc-jockey/ | relative_url'}}">disc jockey</a> • 
-              <a href="/foodie">cv</a> • 
-            <a href="https://x.com/_osahenru">say hi</a>
-        </div>
-    </div>
-</footer>
-
 <style>
     footer {
         background-color: #0D0E0E;
         color: #fff;
         border-top: 1px solid #1A1B1B;
         text-align: center;
+        padding: 25px 20px 20px;
     }
     
     .footer-simple {
@@ -30,18 +15,86 @@
     
     .copyright {
         color: #CCCCCC;
-        margin: 0 0 10px 0;
+        margin: 0 0 15px 0;
         font-size: 14px;
     }
     
-    .footer-links a {
+    /* Social Media Links Styles */
+    .footer-social-links {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #1A1B1B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #CCCCCC;
+        font-size: 16px;
+        transition: all 0.3s ease;
         text-decoration: none;
-        font-size: 14px;
-        transition: color 0.3s ease;
+        border: 1px solid #2A2B2B;
     }
     
-    .footer-links a:hover {
-        color: #FF6B35;
+    .social-link:hover {
+        background-color: #FF5722;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 3px 10px rgba(255, 87, 34, 0.3);
+    }
+    
+    /* Specific colors for each platform on hover */
+    .social-link:nth-child(1):hover { background-color: #FF7700; } /* SoundCloud */
+    .social-link:nth-child(2):hover { background-color: #333333; } /* GitHub */
+    .social-link:nth-child(3):hover { background-color: #E4405F; } /* Instagram */
+    .social-link:nth-child(4):hover { background-color: #000000; } /* Twitter/X */
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        footer {
+            padding: 20px 15px 15px;
+        }
+        
+        .footer-social-links {
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .social-link {
+            width: 36px;
+            height: 36px;
+            font-size: 14px;
+        }
     }
 </style>
+
+<footer>
+    <div class="footer-simple">
+        <p class="copyright">
+            &copy; {{ site.time | date: "%Y" }} made with ❤️ by timosahenru
+        </p>
+        
+        <!-- Social Media Links -->
+        <div class="footer-social-links">
+            <a href="#" class="social-link" aria-label="SoundCloud">
+                <i class="fab fa-soundcloud"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/_osahenru" class="social-link" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        
+    </div>
+</footer>

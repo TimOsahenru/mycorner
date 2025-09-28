@@ -153,11 +153,11 @@ lang: en
         line-height: 1.5;
     }
     
-    /* Blog section */
+    /* Blog section - Fixed spacing */
     .blog-section {
         max-width: 1200px;
-        margin: 60px auto;
-        padding: 0 20px;
+        margin: 60px auto 100px; /* Increased bottom margin */
+        padding: 0 20px 40px; /* Added bottom padding */
     }
     
     .blog-section h2 {
@@ -183,6 +183,7 @@ lang: en
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
+        margin-bottom: 30px; /* Added margin at bottom */
     }
     
     .grid-item {
@@ -308,6 +309,10 @@ lang: en
         .skills-grid {
             grid-template-columns: 1fr;
         }
+        
+        .blog-section {
+            margin-bottom: 80px; /* Adjusted for mobile */
+        }
     }
     
     @media (max-width: 480px) {
@@ -330,36 +335,17 @@ lang: en
         .grid-item p {
             font-size: 13px;
         }
+        
+        .blog-section {
+            margin-bottom: 60px; /* Further adjustment for small screens */
+        }
     }
 </style>
 
-<!-- Introduction section -->
-<section class="intro-section">
-    <h1>Hey 👋🏽, it's Tim!</h1>
-    
-    <div class="intro-text">
-        <p>Thanks for taking a stop at my corner of the web!</p>
-        <p>
-            I'm a software engineer who enjoys building full-stack applications
-            using <span class="highlight">Python</span>. I'm currently building 
-            <a href="" class="highlight">Africa's e-ticket platform</a> 🚀 amongst a few of my portfolio projects.
-        </p>
-        <p>
-            In addition to documenting my side projects here, I enjoy penning down
-            my thoughts on software, organizational processes, music, or just random
-            yap. Feel free to check out my most recent yapping.
-        </p>
-    </div>
-    
-    <div class="cta-buttons">
-        <a href="/about" class="cta-btn cta-primary">Learn More About Me</a>
-        <a href="/projects" class="cta-btn cta-secondary">View My Projects</a>
-    </div>
-</section>
 
 <!-- Blog section -->
 <section class="blog-section">
-    <h2>Recent Notes 📝</h2>
+    <h2>All notes 📝</h2>
     
     <div class="grid-container">
         {% for post in site.posts limit:6 %}

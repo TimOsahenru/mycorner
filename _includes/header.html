@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <a class="logo" href="/">Tim Osahenru.</a>
     <nav>
         <a href="{{ '/notes/' | relative_url }}">notes</a>
@@ -8,54 +8,104 @@
         <a href="/cv">cv</a>
         <a href="https://x.com/_osahenru" target="_blank">say hi</a>
     </nav>
-</header>
+</header> -->
 
+  <header>
+        <a href="/" class="logo">Tim Osahenru.</a>
+        <div class="nav-toggler">☰</div>
+        <nav>
+            <ul>
+                <li> <a href="{{ '/notes/' | relative_url }}">notes</a></li>
+                <li><a href="{{ '/foodie/' | relative_url }}">foodie</a></li>
+                <li><a href="{{ '/foodie/' | relative_url }}">金言</a></li>
+                <li><a href="{{ '/disc-jockey/' | relative_url }}">disc jockey</a></li>
+                <li><a href="/cv">cv</a></li>
+                <li><a href="https://x.com/_osahenru" target="_blank">say hi</a></li>
+            </ul>
+        </nav>
+    </header>
 <style>
-    header {
-        background-color: #0D0E0E;
-        color: #fff;
-        padding: 25px 20px;
-        border-bottom: 1px solid #1A1B1B;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  header {
+            background-color: #0D0E0E;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
     
-    .logo {
-        font-size: 20px;
-        font-weight: 700;
-        text-decoration: none;
-        color: #fff;
-    }
-    
-    nav {
-        display: flex;
-        gap: 25px;
-    }
-    
-    nav a {
-        color: #CCCCCC;
-        text-decoration: none;
-        font-size: 16px;
-        transition: color 0.3s ease;
-    }
-    
-    nav a:hover {
-        color: #FF6B35;
-    }
-    
-    @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            gap: 15px;
-            text-align: center;
-            padding: 20px;
+     nav {
+            margin-left: auto;
+            margin-right: 250px;
         }
         
-        nav {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+    
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
         }
+        
+    nav ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+    
+     nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+       .nav-toggler {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+         .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: auto;
+            margin-left: 250px;
+            text-decoration: none;
+            color: #fff;
+        }
+    
+    @media (max-width: 768px) {
+           .logo {
+                margin-left: auto;
+                text-align: center;
+            }
+        
+        .nav-toggler {
+                display: block;
+            }
+            nav {
+                display: none;
+                width: 100%;
+                margin-right: 0;
+                text-align: center;
+            }
+              nav.active {
+                display: block;
+                background-color: #0D0E0E;
+                z-index: 1;
+            }
+               nav ul {
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+               nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+              .nav-toggler {
+                display: block;
+                margin-left: auto;
+                color: white;
+            }
+            
     }
 </style>
