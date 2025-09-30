@@ -1,5 +1,8 @@
 <header>
-        <a href="/" class="logo">Tim Osahenru.</a>
+       <a href="/" class="logo">
+    Tim Osahenru.
+    <span class="footnote">... fear fades</span>
+</a>
         <div class="nav-toggler">☰</div>
         <nav>
             <ul>
@@ -7,7 +10,7 @@
                 <li><a href="{{ '/foodie/' | relative_url }}">foodie</a></li>
                 <li><a href="{{ '/golden-words/' | relative_url }}">金言</a></li>
                 <li><a href="{{ '/disc-jockey/' | relative_url }}">disc jockey</a></li>
-                <li><a href="/cv">cv</a></li>
+                <li><a href="{{ '/tim_osahenru_resume/' | relative_url }}">cv</a></li>
                 <li><a href="https://x.com/_osahenru" target="_blank">say hi</a></li>
             </ul>
         </nav>
@@ -27,7 +30,20 @@
             margin-right: 250px;
         }
         
-    
+    .logo {
+    position: relative;
+    display: inline-block;
+}
+
+.footnote {
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    /* color: #FF5722; */
+    font-style: italic;
+    line-height: 1;
+    margin-top: 2px;
+}
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -57,14 +73,17 @@
             margin-right: auto;
             margin-left: 250px;
             text-decoration: none;
-            color: #fff;
+            color: #888;
         }
     
     @media (max-width: 768px) {
-           .logo {
-                margin-left: auto;
-                text-align: center;
-            }
+             .logo {
+        margin-left: auto;
+        text-align: left; /* Change from center to left */
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start; /* Change from center to flex-start */
+    }
         
         .nav-toggler {
                 display: block;
