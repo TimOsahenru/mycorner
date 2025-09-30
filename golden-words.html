@@ -9,6 +9,17 @@ layout: default
     <title>Words of Wisdom - Tim Osahenru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base body styling */
+        body {
+            font-family: 'Work Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #040200;
+            color: #fff;
+            padding-bottom: 100px;
+        }
+        
         h1 {
             font-size: 50px;
             font-weight: bold;
@@ -21,15 +32,6 @@ layout: default
         
         p {
             font-size: 20px;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-right: auto;
-            margin-left: 250px;
-            text-decoration: none;
-            color: #fff;
         }
         
         .container {
@@ -301,7 +303,6 @@ layout: default
             padding: 30px;
             border-radius: 8px;
             margin-top: 30px;
-            /* margin: 30px 0 80px 0; */
         }
         
         .wisdom-grid {
@@ -448,6 +449,7 @@ layout: default
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 10;
         }
         
         .card-share:hover {
@@ -582,7 +584,6 @@ layout: default
         
         /* Mobile view adjustments */
         @media (max-width: 768px) {
-            
             .header-container {
                 flex-direction: column;
                 gap: 10px;
@@ -605,7 +606,6 @@ layout: default
             .wisdom-section {
                 padding: 20px;
                 margin-top: 20px;
-                /* margin: 20px 0 60px 0; */
             }
             
             .wisdom-grid {
@@ -678,7 +678,6 @@ layout: default
             .wisdom-section {
                 padding: 15px;
                 margin-top: 20px;
-                /* margin: 20px 0 50px 0; */
             }
             
             .wisdom-card {
@@ -820,15 +819,11 @@ layout: default
         </div>
     </div>
     
+    <footer>
+        <p>&copy; 2023 Tim Osahenru | <a href="#">Back to Top</a></p>
+    </footer>
+    
     <script>
-        // Mobile navigation toggle
-        const navToggler = document.querySelector('.nav-toggler');
-        const nav = document.querySelector('nav');
-        
-        navToggler.addEventListener('click', function() {
-            nav.classList.toggle('active');
-        });
-        
         // Fade in elements on scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         
@@ -855,32 +850,6 @@ layout: default
         
         // Social sharing functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // Page sharing
-            const pageTitle = document.title;
-            const pageUrl = window.location.href;
-            const pageDescription = "A collection of insights, reflections, and lessons learned along the journey.";
-            
-            // Twitter sharing
-            document.getElementById('share-twitter').addEventListener('click', function(e) {
-                e.preventDefault();
-                const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(pageTitle)}&url=${encodeURIComponent(pageUrl)}`;
-                window.open(twitterUrl, '_blank', 'width=600,height=400');
-            });
-            
-            // Facebook sharing
-            document.getElementById('share-facebook').addEventListener('click', function(e) {
-                e.preventDefault();
-                const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-                window.open(facebookUrl, '_blank', 'width=600,height=400');
-            });
-            
-            // LinkedIn sharing
-            document.getElementById('share-linkedin').addEventListener('click', function(e) {
-                e.preventDefault();
-                const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
-                window.open(linkedinUrl, '_blank', 'width=600,height=400');
-            });
-            
             // Card sharing
             const cardShareButtons = document.querySelectorAll('.card-share');
             cardShareButtons.forEach(button => {
@@ -889,6 +858,7 @@ layout: default
                     const wisdomTitle = card.querySelector('h3').textContent;
                     const wisdomText = card.querySelector('p').textContent;
                     const shareText = `${wisdomTitle}: ${wisdomText}`;
+                    const pageUrl = window.location.href;
                     
                     // Create a temporary modal for card sharing
                     const modal = document.createElement('div');
