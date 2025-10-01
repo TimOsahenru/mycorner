@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How not like me affects me"
-date: 2025-03-12
+date: 2029-03-12
 categories: rants
 ---
 
