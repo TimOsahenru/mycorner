@@ -78,7 +78,7 @@ framework, that enables event organizers to seamlessly take
 questions from the audience creating interactive sessions.
 
 #### <a href="https://www.codegrades.com/user/tim/python2023/grade6/">Code Grades</a>
-Alpha tester for this project built by a friend and mentor who is a <a href="https://ntoll.org/">Python emeritus</a>, the project also acts a storyboard to my building <a href="https://github.com/TimOsahenru/dev-locate"> Devlocate</a>
+Alpha tester for this project built by a friend and mentor who is a <a href="https://ntoll.org/">Python emeritus</a>, the project also acts a storyboard to building <a href="https://github.com/TimOsahenru/dev-locate"> Devlocate</a>
 ## Education
 BSc, Computer Science & Education – Benson Idahosa
 University, Nigeria (Switched from Mathematics after Year 1)
