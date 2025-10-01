@@ -16,13 +16,9 @@ collaboration, documentation.
 
 ## Professional Experience
 #### <a href="">​Technical manager – Black Python Dev, Remote​</a> <br>(October 2025 – Present)
-- Lead a cohort of 15+ students (ages 18–40) in full-stack web
-development using Django.
-- Designed and delivered a project-based
-curriculum (REST
-APIs, authentication, deployment).
-- Conducted weekly code reviews, 1:1 mentorship, and pair
-programming sessions.
+- Made architectural decisions to improve site performance, user exprience and maintianability
+- Integrated new features that aligns with the community goals
+- Review of pull requests and merging them, providing constructive feedbacks to fellow contributors, specing our issues
 
 #### <a href="">​Tutor in Django – Slightly Techie, Remote​</a> <br>(July 2025 – September 2025)
 - Lead a cohort of 15+ students (ages 18–40) in full-stack web
