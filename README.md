@@ -15,14 +15,18 @@ MyCorner leverages [Jekyll](https://jekyllrb.com/) for static site generation, m
 
 ## ⚡ Setup Instructions
 
-1. **Clone the repository:**
+1. **Fork the repository:**
+
+   - Click the "Fork" button at the top right of the GitHub page to create your own copy of the repository under your GitHub account.
+
+2. **Clone the repository:**
 
    ```bash
    git clone https://github.com/TimOsahenru/mycorner.git
    cd mycorner
    ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
 
    - Make sure you have [Ruby](https://www.ruby-lang.org/en/documentation/installation/) and [Bundler](https://bundler.io/) installed.
    - Then run:
@@ -30,7 +34,7 @@ MyCorner leverages [Jekyll](https://jekyllrb.com/) for static site generation, m
      bundle install
      ```
 
-3. **Serve the site locally:**
+4. **Serve the site locally:**
    ```bash
    bundle exec jekyll serve
    ```
@@ -85,4 +89,4 @@ mycorner/
 
 ---
 
-\_Feel free to open issues or contribute!
+✨ **Got an idea, suggestion, or bug to squash? Jump in and help shape MyCorner—your contribution makes this space awesome!**
