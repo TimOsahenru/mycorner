@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Enhancing your python code with decorators"
-date: 2024-06-03
+date: 2025-06-03
 categories: python backend webdev learning
 ---
 

@@ -153,11 +153,10 @@ lang: en
         line-height: 1.5;
     }
     
-    /* Blog section - Fixed spacing */
     .blog-section {
         max-width: 1200px;
-        margin: 60px auto 100px; /* Increased bottom margin */
-        padding: 0 20px 40px; /* Added bottom padding */
+        margin: 60px auto 100px;
+        padding: 0 20px 40px;
     }
     
     .blog-section h2 {
@@ -183,7 +182,7 @@ lang: en
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
-        margin-bottom: 30px; /* Added margin at bottom */
+        margin-bottom: 30px;
     }
     
     .grid-item {
@@ -235,13 +234,109 @@ lang: en
         content: "📅";
         margin-right: 5px;
     }
-    
-    .view-all {
+
+    .pagination {
+            position: absolute;
+            bottom: -40px;
+            right: 20px;
+        }
+
+        .pagination a {
+            color: white;
+            background-color: #0D0E0E;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+        .pagination a:hover {
+            background-color: #1A1B1B;
+        }
+
+      /* Pagination styles */
+        .wisdom-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 65px;
+            gap: 10px;
+        }
+
+           .pagination-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1A1B1B;
+            color: #fff;
+            border: 1px solid #2A2B2B;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .pagination-btn:hover {
+            background-color: #FF5722;
+            border-color: #FF5722;
+            transform: translateY(-2px);
+        }
+        
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-btn.disabled:hover {
+            background-color: #1A1B1B;
+            border-color: #2A2B2B;
+            transform: none;
+        }
+        
+        .pagination-pages {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .pagination-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #1A1B1B;
+            color: #fff;
+            border: 1px solid #2A2B2B;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-page:hover {
+            background-color: #2A2B2B;
+        }
+        
+        .pagination-page.active {
+            background-color: #FF5722;
+            border-color: #FF5722;
+        }
+        
+        .pagination-ellipsis {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: #888;
+        }
+    /* .view-all {
         text-align: center;
         margin-top: 40px;
-    }
+    } */
     
-    .view-all-btn {
+    /* .view-all-btn {
         display: inline-block;
         padding: 10px 25px;
         background-color: #0D0E0E;
@@ -256,7 +351,7 @@ lang: en
     .view-all-btn:hover {
         background-color: #FF6B35;
         transform: translateY(-2px);
-    }
+    } */
     
     /* Animations */
     @keyframes fadeInUp {
@@ -287,6 +382,11 @@ lang: en
         .intro-section h1 {
             font-size: 36px;
         }
+
+           .wisdom-pagination {
+                flex-wrap: wrap;
+            }
+            
         
         .intro-text {
             font-size: 18px;
@@ -311,7 +411,7 @@ lang: en
         }
         
         .blog-section {
-            margin-bottom: 80px; /* Adjusted for mobile */
+            margin-bottom: 80px
         }
     }
     
@@ -337,7 +437,7 @@ lang: en
         }
         
         .blog-section {
-            margin-bottom: 60px; /* Further adjustment for small screens */
+            margin-bottom: 60px;
         }
     }
 </style>
@@ -357,11 +457,32 @@ lang: en
         {% endfor %}
     </div>
     
-    {% if site.posts.size > 6 %}
+        <!-- Pagination -->
+            <div class="wisdom-pagination">
+                <a href="#" class="pagination-btn disabled">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Previous</span>
+                </a>
+                
+                <div class="pagination-pages">
+                    <a href="#" class="pagination-page active">1</a>
+                    <a href="#" class="pagination-page">2</a>
+                    <a href="#" class="pagination-page">3</a>
+                    <span class="pagination-ellipsis">...</span>
+                    <a href="#" class="pagination-page">8</a>
+                </div>
+                
+                <a href="#" class="pagination-btn">
+                    <span>Next</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+    <!-- {% if site.posts.size > 6 %}
     <div class="view-all">
         <a href="/blog" class="view-all-btn">View All Posts</a>
     </div>
-    {% endif %}
+    {% endif %} -->
 </section>
 
 <script>

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Devin: A Tool, Not a Substitute for Your Job"
-date: 2024-03-18
+date: 2025-03-18
 categories: ai tech softwaredevelopment beginners
 ---
 

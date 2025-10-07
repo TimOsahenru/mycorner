@@ -617,64 +617,64 @@ lang: en
     });
     
     // Filter functionality
-    document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+    // document.querySelectorAll('.filter-btn').forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         // Remove active class from all buttons
+    //         document.querySelectorAll('.filter-btn').forEach(btn => {
+    //             btn.classList.remove('active');
+    //         });
             
-            // Add active class to clicked button
-            this.classList.add('active');
+    //         // Add active class to clicked button
+    //         this.classList.add('active');
             
-            const filter = this.getAttribute('data-filter');
-            const items = document.querySelectorAll('.grid-item');
+    //         const filter = this.getAttribute('data-filter');
+    //         const items = document.querySelectorAll('.grid-item');
             
-            items.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
+    //         items.forEach(item => {
+    //             if (filter === 'all' || item.getAttribute('data-category') === filter) {
+    //                 item.style.display = 'flex';
+    //             } else {
+    //                 item.style.display = 'none';
+    //             }
+    //         });
+    //     });
+    // });
     
     // Search functionality
-    document.getElementById('searchInput').addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const items = document.querySelectorAll('.grid-item');
-        let visibleItems = 0;
+    // document.getElementById('searchInput').addEventListener('input', function() {
+    //     const searchTerm = this.value.toLowerCase();
+    //     const items = document.querySelectorAll('.grid-item');
+    //     let visibleItems = 0;
         
-        items.forEach(item => {
-            const title = item.querySelector('h3').textContent.toLowerCase();
-            const proverb = item.querySelector('p').textContent.toLowerCase();
-            const tags = item.getAttribute('data-tags').toLowerCase();
+    //     items.forEach(item => {
+    //         const title = item.querySelector('h3').textContent.toLowerCase();
+    //         const proverb = item.querySelector('p').textContent.toLowerCase();
+    //         const tags = item.getAttribute('data-tags').toLowerCase();
             
-            if (title.includes(searchTerm) || proverb.includes(searchTerm) || tags.includes(searchTerm)) {
-                item.style.display = 'flex';
-                visibleItems++;
-            } else {
-                item.style.display = 'none';
-            }
-        });
+    //         if (title.includes(searchTerm) || proverb.includes(searchTerm) || tags.includes(searchTerm)) {
+    //             item.style.display = 'flex';
+    //             visibleItems++;
+    //         } else {
+    //             item.style.display = 'none';
+    //         }
+    //     });
         
-        // Show empty state if no results
-        const emptyState = document.getElementById('emptyState');
-        if (visibleItems === 0 && searchTerm !== '') {
-            if (!emptyState) {
-                const emptyDiv = document.createElement('div');
-                emptyDiv.id = 'emptyState';
-                emptyDiv.className = 'empty-state';
-                emptyDiv.innerHTML = `
-                    <i>🍜</i>
-                    <h3>No dishes found</h3>
-                    <p>Try searching for something else or check back later for new recipes!</p>
-                `;
-                document.getElementById('foodGrid').appendChild(emptyDiv);
-            }
-        } else if (emptyState) {
-            emptyState.remove();
-        }
-    });
+    //     // Show empty state if no results
+    //     const emptyState = document.getElementById('emptyState');
+    //     if (visibleItems === 0 && searchTerm !== '') {
+    //         if (!emptyState) {
+    //             const emptyDiv = document.createElement('div');
+    //             emptyDiv.id = 'emptyState';
+    //             emptyDiv.className = 'empty-state';
+    //             emptyDiv.innerHTML = `
+    //                 <i>🍜</i>
+    //                 <h3>No dishes found</h3>
+    //                 <p>Try searching for something else or check back later for new recipes!</p>
+    //             `;
+    //             document.getElementById('foodGrid').appendChild(emptyDiv);
+    //         }
+    //     } else if (emptyState) {
+    //         emptyState.remove();
+    //     }
+    // });
 </script>

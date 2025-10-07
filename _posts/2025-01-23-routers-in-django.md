@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Getting started with your first open source project"
-date: 2022-10-26
+date: 2025-10-3
 categories: [django, python, opensource, github, git, hacktoberfest]
 ---
 
