@@ -178,39 +178,6 @@ lang: en
         border-color: #FF6B35;
     }
     
-    /* Search bar */
-    .search-container {
-        max-width: 500px;
-        margin: 0 auto 40px;
-        position: relative;
-    }
-    
-    .search-bar {
-        width: 100%;
-        padding: 12px 20px;
-        background-color: #0D0E0E;
-        border: 1px solid #333;
-        border-radius: 30px;
-        color: #fff;
-        font-family: 'Work Sans', sans-serif;
-        font-size: 16px;
-        transition: all 0.3s ease;
-    }
-    
-    .search-bar:focus {
-        outline: none;
-        border-color: #FF6B35;
-        box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.2);
-    }
-    
-    .search-icon {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #888;
-    }
-    
     /* Modal styles */
     .modal {
         display: none;
@@ -417,21 +384,10 @@ lang: en
     
     <p class="intro-text">Exploring the art of cooking through Japanese wisdom. Each dish tells a story, and each proverb teaches a lesson about patience, precision, and passion in the kitchen.</p>
     
-    <!-- <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Search dishes or proverbs..." id="searchInput">
-        <span class="search-icon">🔍</span>
-    </div> -->
-    
-    <!-- <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All Dishes</button>
-        <button class="filter-btn" data-filter="breakfast">Breakfast</button>
-        <button class="filter-btn" data-filter="main">Main Course</button>
-        <button class="filter-btn" data-filter="special">Specialties</button>
-    </div> -->
     
     <div class="grid-container" id="foodGrid">
         <!-- Item 1 -->
-        <div class="grid-item" data-category="breakfast" data-tags="bread egg japanese italian">
+        <div class="grid-item" data-category="breakfast" data-tags="bread egg japanese italian" onclick="openModal('modal1')">
             <div class="image-container">
                 <img src="/assets/images/bread_and_egg.jpg" alt="Bread and egg">
                 <span class="food-badge">Something lite</span>
@@ -444,7 +400,7 @@ lang: en
         </div>
         
         <!-- Item 2 -->
-        <div class="grid-item" data-category="main" data-tags="starch banga soup nigerian">
+        <div class="grid-item" data-category="main" data-tags="starch banga soup nigerian" onclick="openModal('modal2')">
             <div class="image-container">
                 <img src="/assets/images/starch_and_banga.JPG" alt="Starch and banga">
                 <span class="food-badge">Heavy duty</span>
@@ -457,7 +413,7 @@ lang: en
         </div>
         
         <!-- Item 3 -->
-        <div class="grid-item" data-category="main" data-tags="chicken grill british">
+        <div class="grid-item" data-category="main" data-tags="chicken grill british" onclick="openModal('modal3')">
             <div class="image-container">
                 <img src="/assets/images/chicken.jpg" alt="Chicken">
                 <span class="food-badge">Sweet mouth</span>
@@ -470,7 +426,7 @@ lang: en
         </div>
         
         <!-- Item 4 -->
-        <div class="grid-item" data-category="main" data-tags="jollof rice ghana nigerian">
+        <div class="grid-item" data-category="main" data-tags="jollof rice ghana nigerian" onclick="openModal('modal4')">
             <div class="image-container">
                 <img src="/assets/images/Jollof.jpg" alt="Jollof">
                 <span class="food-badge">Africa's unifier</span>
@@ -483,7 +439,7 @@ lang: en
         </div>
         
         <!-- Item 5 -->
-        <div class="grid-item" data-category="main" data-tags="spaghetti italian pasta">
+        <div class="grid-item" data-category="main" data-tags="spaghetti italian pasta" onclick="openModal('modal5')">
             <div class="image-container">
                 <img src="/assets/images/Spaghetti.jpg" alt="Spaghetti">
                 <span class="food-badge">Something long</span>
@@ -533,9 +489,9 @@ lang: en
     </div>
 </div>
 
-<!-- Modal for image 5 -->
-<div id="modal5" class="modal">
-    <span class="close" onclick="closeModal('modal5')">&times;</span>
+<!-- Modal for image 4 -->
+<div id="modal4" class="modal">
+    <span class="close" onclick="closeModal('modal4')">&times;</span>
     <span class="nav-btn prev" onclick="navigateModal(-1)">&#10094;</span>
     <span class="nav-btn next" onclick="navigateModal(1)">&#10095;</span>
     <img class="modal-content" src="/assets/images/Jollof.jpg" alt="Jollof">
@@ -545,9 +501,9 @@ lang: en
     </div>
 </div>
 
-<!-- Modal for image 6 -->
-<div id="modal6" class="modal">
-    <span class="close" onclick="closeModal('modal6')">&times;</span>
+<!-- Modal for image 5 -->
+<div id="modal5" class="modal">
+    <span class="close" onclick="closeModal('modal5')">&times;</span>
     <span class="nav-btn prev" onclick="navigateModal(-1)">&#10094;</span>
     <span class="nav-btn next" onclick="navigateModal(1)">&#10095;</span>
     <img class="modal-content" src="/assets/images/Spaghetti.jpg" alt="Spaghetti">
@@ -559,16 +515,18 @@ lang: en
 
 <script>
     // Modal navigation
-    const modals = ['modal1', 'modal2', 'modal3', 'modal5', 'modal6'];
+    const modals = ['modal1', 'modal2', 'modal3', 'modal4', 'modal5'];
     let currentModalIndex = 0;
     
     function openModal(modalId) {
         document.getElementById(modalId).style.display = "block";
         currentModalIndex = modals.indexOf(modalId);
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
     }
     
     function closeModal(modalId) {
         document.getElementById(modalId).style.display = "none";
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
     }
     
     function navigateModal(direction) {
@@ -595,6 +553,7 @@ lang: en
         for (let i = 0; i < modals.length; i++) {
             if (event.target == modals[i]) {
                 modals[i].style.display = "none";
+                document.body.style.overflow = 'auto';
             }
         }
     }
@@ -605,6 +564,7 @@ lang: en
             const modals = document.getElementsByClassName('modal');
             for (let i = 0; i < modals.length; i++) {
                 modals[i].style.display = "none";
+                document.body.style.overflow = 'auto';
             }
         }
         
@@ -616,65 +576,14 @@ lang: en
         }
     });
     
-    // Filter functionality
-    // document.querySelectorAll('.filter-btn').forEach(button => {
-    //     button.addEventListener('click', function() {
-    //         // Remove active class from all buttons
-    //         document.querySelectorAll('.filter-btn').forEach(btn => {
-    //             btn.classList.remove('active');
-    //         });
-            
-    //         // Add active class to clicked button
-    //         this.classList.add('active');
-            
-    //         const filter = this.getAttribute('data-filter');
-    //         const items = document.querySelectorAll('.grid-item');
-            
-    //         items.forEach(item => {
-    //             if (filter === 'all' || item.getAttribute('data-category') === filter) {
-    //                 item.style.display = 'flex';
-    //             } else {
-    //                 item.style.display = 'none';
-    //             }
-    //         });
-    //     });
-    // });
-    
-    // Search functionality
-    // document.getElementById('searchInput').addEventListener('input', function() {
-    //     const searchTerm = this.value.toLowerCase();
-    //     const items = document.querySelectorAll('.grid-item');
-    //     let visibleItems = 0;
-        
-    //     items.forEach(item => {
-    //         const title = item.querySelector('h3').textContent.toLowerCase();
-    //         const proverb = item.querySelector('p').textContent.toLowerCase();
-    //         const tags = item.getAttribute('data-tags').toLowerCase();
-            
-    //         if (title.includes(searchTerm) || proverb.includes(searchTerm) || tags.includes(searchTerm)) {
-    //             item.style.display = 'flex';
-    //             visibleItems++;
-    //         } else {
-    //             item.style.display = 'none';
-    //         }
-    //     });
-        
-    //     // Show empty state if no results
-    //     const emptyState = document.getElementById('emptyState');
-    //     if (visibleItems === 0 && searchTerm !== '') {
-    //         if (!emptyState) {
-    //             const emptyDiv = document.createElement('div');
-    //             emptyDiv.id = 'emptyState';
-    //             emptyDiv.className = 'empty-state';
-    //             emptyDiv.innerHTML = `
-    //                 <i>🍜</i>
-    //                 <h3>No dishes found</h3>
-    //                 <p>Try searching for something else or check back later for new recipes!</p>
-    //             `;
-    //             document.getElementById('foodGrid').appendChild(emptyDiv);
-    //         }
-    //     } else if (emptyState) {
-    //         emptyState.remove();
-    //     }
-    // });
+    // Add click handlers to grid items (backup in case inline onclick doesn't work)
+    document.addEventListener('DOMContentLoaded', function() {
+        const gridItems = document.querySelectorAll('.grid-item');
+        gridItems.forEach((item, index) => {
+            // Remove any existing click handlers and add new ones
+            item.onclick = function() {
+                openModal(`modal${index + 1}`);
+            };
+        });
+    });
 </script>

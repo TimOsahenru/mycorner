@@ -445,7 +445,7 @@ lang: en
 
 <!-- Blog section -->
 <section class="blog-section">
-    <h2>All notes 📝</h2>
+    <h2>all notes 📝</h2>
     
     <div class="grid-container">
         {% for post in site.posts limit:6 %}
@@ -456,8 +456,9 @@ lang: en
         </a>
         {% endfor %}
     </div>
-    
-        <!-- Pagination -->
+
+    {% if site.posts.size > 6 %}
+   <!-- Pagination -->
             <div class="wisdom-pagination">
                 <a href="#" class="pagination-btn disabled">
                     <i class="fas fa-chevron-left"></i>
@@ -477,12 +478,7 @@ lang: en
                     <i class="fas fa-chevron-right"></i>
                 </a>
             </div>
-
-    <!-- {% if site.posts.size > 6 %}
-    <div class="view-all">
-        <a href="/blog" class="view-all-btn">View All Posts</a>
-    </div>
-    {% endif %} -->
+    {% endif %}
 </section>
 
 <script>
